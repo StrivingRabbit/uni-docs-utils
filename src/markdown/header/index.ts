@@ -1,6 +1,7 @@
 import MarkdownIt from "markdown-it"
+import Token from "markdown-it/lib/token"
 
-function parseHeader(tokens: MarkdownIt.Token[]) {
+function parseHeader(tokens: Token[]) {
   tokens.forEach((t, i) => {
     if (t.type === 'heading_open' && /h\d/.test(t.tag)) {
       const token = tokens[i + 1]

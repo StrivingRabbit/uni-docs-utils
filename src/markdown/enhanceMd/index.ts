@@ -1,5 +1,6 @@
 import MarkdownIt from "markdown-it"
 import Renderer from "markdown-it/lib/renderer"
+import Token from "markdown-it/lib/token"
 
 function addLoadingAttr(attribs: Record<string, any>) {
   if (matchSrc(attribs.src) && !attribs.loading) {
@@ -16,7 +17,7 @@ function matchSrc(src: string) {
   return typeof src === 'string' && ['qiniu-web-assets.dcloud.net.cn', 'web-ext-storage.dcloud.net.cn'].some((item) => src.includes(item))
 }
 
-function replaceNodes(nodes: any[], replace: typeof addLoadingAttr, env: any, token: MarkdownIt.Token) {
+function replaceNodes(nodes: any[], replace: typeof addLoadingAttr, env: any, token: Token) {
   if (!nodes) return
   for (let i = 0; i < nodes.length; i++) {
     const node = nodes[i]
@@ -29,7 +30,7 @@ function replaceNodes(nodes: any[], replace: typeof addLoadingAttr, env: any, to
   }
 }
 
-function replaceHTML(token: MarkdownIt.Token, replace: typeof addLoadingAttr, env: any) {
+function replaceHTML(token: Token, replace: typeof addLoadingAttr, env: any) {
   const htmlparser = require('htmlparser2')
   const serializer = require('dom-serializer')
   const dom = new htmlparser.parseDocument(token.content, {

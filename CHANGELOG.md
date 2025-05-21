@@ -1,5 +1,11 @@
 # @dcloudio/docs-utils
 
+## 1.0.3
+
+### Patch Changes
+
+- feat: 移除对文件的读取逻辑
+
 ## 1.0.2
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @dcloudio/docs-utils
 
+## 1.0.4
+
+### Patch Changes
+
+- fix: 在 windows 上 glob 执行路径问题
+
 ## 1.0.3
 
 ### Patch Changes

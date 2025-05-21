@@ -1,6 +1,6 @@
 {
   "name": "@dcloudio/docs-utils",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "uni-app official website docs utils",
   "publishConfig": {
     "access": "public"

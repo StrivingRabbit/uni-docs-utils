@@ -69,7 +69,7 @@ export const createLLMSText: Plugin = async (userSettings: LlmsTXTSettings = {},
           } else {
             _path = `${item.path}.md`
           }
-          const content = await fs.promises.readFile(path.join(settings.workDir, _path), 'utf-8')
+          // const content = await fs.promises.readFile(path.join(settings.workDir, _path), 'utf-8')
 
           let mdFile: matter.GrayMatterFile<string> | undefined = undefined
           /* if (settings.stripHTML) {

@@ -51,7 +51,7 @@ export const createLLMSText: Plugin = async (userSettings: LlmsTXTSettings = {},
   mdFiles.clear()
   log.info('Starting markdown file collection')
 
-  const preparedFiles: PreparedFile[] = []
+  let preparedFiles: PreparedFile[] = []
   const pushPreparedFile = async (items: SidebarItem4Group[]) => {
     await Promise.all(
       items.map(async (item: SidebarItem4Group) => {
@@ -105,7 +105,7 @@ export const createLLMSText: Plugin = async (userSettings: LlmsTXTSettings = {},
   await Promise.all(
     (Object.keys(sidebar)).map((key: string) => pushPreparedFile(sidebar[key] as SidebarItem4Group[]))
   )
-
+  preparedFiles = preparedFiles.sort((a, b) => a.title.localeCompare(b.title))
   const fileCount = preparedFiles.length
 
   // Skip if no files found

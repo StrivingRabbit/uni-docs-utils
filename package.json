@@ -2,6 +2,9 @@
   "name": "@dcloudio/docs-utils",
   "version": "1.0.1",
   "description": "uni-app official website docs utils",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc && tsc -p tsconfig.json",
     "publish:patch": "npm version patch && npm publish",

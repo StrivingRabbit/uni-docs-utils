@@ -89,7 +89,7 @@ export function createSidebar(sourceDir: string, vuepressPath?: string, domain?:
 	}
 	const sidebar: SidebarConfig4Multiple = {}
 
-	const sideBarMdFiles = glob.sync(path.resolve(sourceDir, './**/_sidebar.md'))
+	const sideBarMdFiles = glob.sync(path.resolve(sourceDir, './**/_sidebar.md').replace(/\\/g, '/'))
 
 	// 需要反向，vuepress 在匹配路由的时候，会按照数组的顺序匹配，所以需要将最长的路径放在最前面，否则 / 路径会第一个被匹配，导致右侧栏不跟随路由变化
 	const tabs = sideBarMdFiles

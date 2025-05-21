@@ -38,10 +38,7 @@
   "dependencies": {
     "glob": "10.4.5",
     "gray-matter": "^4.0.3",
-    "picocolors": "^1.1.1",
-    "remark": "^13.0.0",
-    "remark-frontmatter": "^3.0.0",
-    "unist-util-remove": "^2.1.0"
+    "picocolors": "^1.1.1"
   },
   "resolutions": {
     "terser-webpack-plugin": "1.4.6",

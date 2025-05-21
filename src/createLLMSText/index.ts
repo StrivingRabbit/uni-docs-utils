@@ -2,9 +2,9 @@ import fs from 'fs';
 import path from 'path';
 import pc from 'picocolors'
 import matter from 'gray-matter'
-const remark = require('remark');
+/* const remark = require('remark');
 const remarkFrontmatter = require('remark-frontmatter');
-const remove = require('unist-util-remove');
+const remove = require('unist-util-remove'); */
 import type { Plugin, SidebarItem4Group } from '@vuepress/types'
 import { LlmsTXTSettings, PreparedFile } from './types';
 import log from './helper/logger';

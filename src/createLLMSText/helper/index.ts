@@ -1,10 +1,10 @@
 import fs from 'node:fs/promises'
-import path from 'node:path'
+// import path from 'node:path'
 
 import matter from 'gray-matter'
 import pc from 'picocolors'
-const remark = require('remark');
-const remarkFrontmatter = require('remark-frontmatter');
+// const remark = require('remark');
+// const remarkFrontmatter = require('remark-frontmatter');
 
 import type { LinksExtension, PreparedFile } from '../types.js'
 import { expandTemplate, generateMetadata, normalizePath } from './utils'

@@ -42,6 +42,6 @@
     "@types/markdown-it": "< 14"
   },
   "dependencies": {
-    "glob": "^11.0.2"
+    "glob": "10.4.5"
   }
 }

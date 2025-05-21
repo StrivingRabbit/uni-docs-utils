@@ -1,5 +1,11 @@
 # @dcloudio/docs-utils
 
+## 1.0.2
+
+### Patch Changes
+
+- fix: 依赖错误
+
 ## 1.0.1
 
 ### Patch Changes

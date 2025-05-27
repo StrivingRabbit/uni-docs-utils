@@ -56,18 +56,20 @@ export const createLLMSText: Plugin = async (userSettings: LlmsTXTSettings = {},
     await Promise.all(
       items.map(async (item: SidebarItem4Group) => {
         if (item.path && !settings.ignoreFiles.includes(item.path)) {
-          let _path = ''
-          if (item.path.endsWith('/')) {
-            _path = `${item.path}README.md`
+          let _path = item.path
+          if (_path.endsWith('/')) {
+            _path = `${_path}README.md`
 
             try {
-              fs.accessSync(path.join(settings.workDir, item.path))
+              fs.accessSync(path.join(settings.workDir, _path))
             } catch (error) {
               _path = `${item.path}readme.md`
             }
 
           } else {
-            _path = `${item.path}.md`
+            if (!_path.endsWith('.md') || !_path.endsWith('.html')) {
+              _path = `${_path}.md`
+            }
           }
           // const content = await fs.promises.readFile(path.join(settings.workDir, _path), 'utf-8')
 

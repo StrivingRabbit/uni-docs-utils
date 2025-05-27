@@ -1,5 +1,11 @@
 # @dcloudio/docs-utils
 
+## 1.0.5
+
+### Patch Changes
+
+- fix: 在获取 vuepress sidebar 并添加后缀时，忽略 .html 结尾
+
 ## 1.0.4
 
 ### Patch Changes

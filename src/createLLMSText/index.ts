@@ -67,7 +67,7 @@ export const createLLMSText: Plugin = async (userSettings: LlmsTXTSettings = {},
             }
 
           } else {
-            if (!_path.endsWith('.md') || !_path.endsWith('.html')) {
+            if (!_path.endsWith('.md') && !_path.endsWith('.html')) {
               _path = `${_path}.md`
             }
           }

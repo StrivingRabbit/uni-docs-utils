@@ -9,6 +9,7 @@ import pc from 'picocolors'
 import type { LinksExtension, PreparedFile } from '../types.js'
 import { expandTemplate, generateMetadata, normalizePath } from './utils'
 import log from './logger.js'
+import { isExternal } from '../../shared/index.js'
 
 /** Options for generating the `llms.txt` file. | 生成 `llms.txt` 文件的选项。 */
 export interface GenerateLLMsTxtOptions {
@@ -161,11 +162,16 @@ export async function generateTOC(
   return preparedFiles
     .map((file) => {
       // const relativePath = path.relative(srcDir, file.path)
-      const normalizedPath = normalizePath(file.path, {
-        domain,
-        linksExtension,
-        cleanUrls,
-      })
+      let normalizedPath = ''
+      if (isExternal(file.path)) {
+        normalizedPath = file.path
+      } else {
+        normalizedPath = normalizePath(file.path, {
+          domain,
+          linksExtension,
+          cleanUrls,
+        })
+      }
 
       // Get first sentence from content if available
       // 如果可用，从内容中获取第一句话

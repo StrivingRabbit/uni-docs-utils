@@ -1,5 +1,11 @@
 # @dcloudio/docs-utils
 
+## 1.0.6
+
+### Patch Changes
+
+- fix: 不处理 http 开头和 .html 结尾链接
+
 ## 1.0.5
 
 ### Patch Changes

@@ -112,3 +112,5 @@ export function createSidebar(sourceDir: string, vuepressPath?: string, domain?:
 
 	return tabs.length ? sidebar : false
 }
+
+export { createSiteMap }

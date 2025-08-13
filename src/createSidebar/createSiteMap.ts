@@ -15,7 +15,13 @@ export default function (domain: string, links: string[], vuepressPath: string, 
     return `  <url>
     <loc>${domain + url}</loc>
   </url>`
-  }).join('\n')
+  })
+
+  xmlItems.unshift(`<url>
+    <loc>${domain}</loc>
+    <lastmod>${new Date()}</lastmod>
+    <priority>1.0</priority>
+  </url>`)
 
   const rootPath = path.resolve(vuepressPath, './public')
   const staticExists = fs.existsSync(rootPath)
@@ -23,7 +29,7 @@ export default function (domain: string, links: string[], vuepressPath: string, 
 
   fs.writeFile(
     path.resolve(rootPath, 'sitemap.xml'),
-    xmlBefore + xmlItems + xmlAfter,
+    xmlBefore + xmlItems.join('\n') + xmlAfter,
     { encoding: 'utf-8' },
     callback
   )

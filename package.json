@@ -10,6 +10,7 @@
     "publish:patch": "npm version patch && npm publish",
     "publish:minor": "npm version minor && npm publish",
     "publish:major": "npm version major  && npm publish",
+    "prepublish": "npm run build",
     "postpublish": "cnpm sync @dcloudio/docs-utils"
   },
   "keywords": [

@@ -5,13 +5,13 @@ import matter from 'gray-matter'
 /* const remark = require('remark');
 const remarkFrontmatter = require('remark-frontmatter');
 const remove = require('unist-util-remove'); */
-import type { Plugin, SidebarItem4Group } from '@vuepress/types'
+import type { Context, Plugin, SidebarItem4Group } from '@vuepress/types'
 import { LlmsTXTSettings, PreparedFile } from './types';
 import log from './helper/logger';
 import { defaultLLMsTxtTemplate, PLUGIN_NAME } from './helper/constants';
 import { generateLLMsTxt } from './helper';
 
-export const createLLMSText: Plugin = async (userSettings: LlmsTXTSettings = {}, ctx) => {
+async function generateFiles(userSettings: LlmsTXTSettings, ctx: Context) {
   // Create a settings object with defaults explicitly merged
   // 创建一个设置对象，明确合并默认值
   const settings = {
@@ -23,10 +23,6 @@ export const createLLMSText: Plugin = async (userSettings: LlmsTXTSettings = {},
     ...userSettings,
     // Ensure workDir is set after merging
   }
-
-  // Set to store all markdown file paths
-  // 用于存储所有markdown文件路径的集合
-  const mdFiles: Set<string> = new Set()
 
   if (settings.workDir) {
     settings.workDir = path.resolve(ctx.sourceDir, settings.workDir)
@@ -46,9 +42,6 @@ export const createLLMSText: Plugin = async (userSettings: LlmsTXTSettings = {},
     log.info('Dev server configured for serving plain text docs for LLMs')
   }
 
-  // Reset file collection
-  // 重置文件集合
-  mdFiles.clear()
   log.info('Starting markdown file collection')
 
   let preparedFiles: PreparedFile[] = []
@@ -97,7 +90,7 @@ export const createLLMSText: Plugin = async (userSettings: LlmsTXTSettings = {},
             file: mdFile
           })
         }
-        if (item.children?.length) {
+        if (item.children && item.children.length) {
           return pushPreparedFile(item.children as SidebarItem4Group[])
         }
       })
@@ -175,7 +168,7 @@ export const createLLMSText: Plugin = async (userSettings: LlmsTXTSettings = {},
         }
 
         const content = await generateLLMsTxt(preparedFiles, {
-          indexMd: indexMdExists ? indexMdPath : preparedFiles[0]?.path || '',
+          indexMd: indexMdExists ? indexMdPath : preparedFiles[0] ? preparedFiles[0].path : '',
           srcDir: settings.workDir,
           LLMsTxtTemplate: settings.customLLMsTxtTemplate || defaultLLMsTxtTemplate,
           templateVariables: templateVariables as Record<string, string | boolean | undefined>,
@@ -199,3 +192,8 @@ export const createLLMSText: Plugin = async (userSettings: LlmsTXTSettings = {},
   await Promise.all(tasks)
   log.success(`${pc.bold(PLUGIN_NAME)} completed all tasks`)
 }
+
+export const createLLMSText: Plugin = (userSettings: LlmsTXTSettings = {}, ctx) => ({
+  name: PLUGIN_NAME,
+  ready: () => generateFiles(userSettings, ctx),
+})

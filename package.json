@@ -7,7 +7,7 @@
   },
   "scripts": {
     "build": "tsc && tsc -p tsconfig.json",
-    "test": "npm run build && node test/enhanceMd.test.js",
+    "test": "npm run build && node test/enhanceMd.test.js && node test/createLLMSText.test.js && node test/normalizeLink.test.js",
     "publish:patch": "npm version patch && npm publish",
     "publish:minor": "npm version minor && npm publish",
     "publish:major": "npm version major  && npm publish",

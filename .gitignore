@@ -30,4 +30,6 @@ pnpm-debug.log*
 # pnpm-lock.yaml
 
 # Test coverage
-coverage/ 
+coverage/
+
+.npmrc
